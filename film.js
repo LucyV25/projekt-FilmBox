@@ -103,20 +103,86 @@ const filmy = [
 			'Na zámek v podhůří Krkonoš přijíždí jeho nový majitel Štěpán se svojí snoubenkou, krásnou komtesou Blankou, a mladším bratrem Adamem. Cestou kočár nešťastně srazí kolemjdoucí dívku, Adam jí pomůže a ona se do něj zamiluje. Na zámku Adam objeví starou vlašskou knihu, která by měla obsahovat cestu k pokladům. Tajemné značky vlašské knihy však nedokáže vyluštit ani národopisec Jiráček, který v kraji sbírá pověsti a nevychází z údivu nad tím, že zdejší lidé stále věří v Krakonoše. Na zámku se objeví záhadný cizinec a nabídne Štěpánovi, že jej k pokladu za určitých podmínek dovede. Výprava do hor může začít. Naplní se Liduščina láska k Adamovi? Jakou záhadu skrývá starý obraz na zámku Hůrka a co strašlivého se v horách kdysi odehrálo? A kdo je vlastně Krakonoš a jaké je jeho největší tajemství? (csfd.cz, Česká televize)',
 		premiera: '2022-12-24',
 	},
+	{
+        id: "inception",
+        nazev: "Inception",
+        plakat: {
+            url: "https://image.pmgstatic.com/cache/resized/w420/files/images/film/posters/160/620/160620903_69696f.jpg",
+            sirka: 420,
+			vyska: 592,
+        },
+        ochutnavka: "Sci-fi thriller o snech a realitě.",
+        popis: "Skupina zlodějů proniká do lidských snů, aby získala tajné informace.",
+        premiera: "2010-07-16",
+    },
 ]
+function daysSincePremiere(premieraDate) {
+    const premiere = new Date(premieraDate);
+    const today = new Date();
+    const differenceInTime = today - premiere;
+    const differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24)); // Převod na dny
+    return differenceInDays;
+}
+
 const detailContainer = document.getElementById('detail-filmu');
 const nazevFilmu = decodeURIComponent(window.location.hash.substring(1));
 
 const filmData = filmy.find(film => film.nazev === nazevFilmu);
 
 if (filmData) {
+	const daysSince = daysSincePremiere(filmData.premiera);
     detailContainer.innerHTML = `
         <h2>${filmData.nazev}</h2>
         <img src="${filmData.plakat.url}" alt="${filmData.nazev}" width="${filmData.plakat.sirka}" height="${filmData.plakat.vyska}" />
         <p><strong>Ochutnávka:</strong> ${filmData.ochutnavka}</p>
         <p><strong>Popis:</strong> ${filmData.popis}</p>
-        <p><strong>Premiera:</strong> ${filmData.premiera}</p>
+        <p><strong>Premiéra:</strong> ${filmData.premiera}</p>
+		<p><strong>Počet dní od premiéry:</strong> ${daysSince} dní</p>
+        <div id="note-form-container">
+            <form id="note-form">
+                <div class="form-group">
+                    <label for="message-input"><strong>Poznámka:</strong></label>
+                    <textarea id="message-input" class="form-control" rows="3" placeholder="Text poznámky"></textarea>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="terms-checkbox" class="form-check-input">
+                    <label for="terms-checkbox" class="form-check-label">Souhlasím se všeobecnými podmínky užívání.</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Uložit</button>
+            </form>
+        </div>
+        <div id="note-container"></div>
     `;
 } else {
     detailContainer.innerHTML = `<p>Film nebyl nalezen. Zkontrolujte adresu URL.</p>`;
+}
+const noteForm = document.getElementById('note-form');
+const messageInput = document.getElementById('message-input');
+const termsCheckbox = document.getElementById('terms-checkbox');
+const noteContainer = document.getElementById('note-container');
+
+if (noteForm) {
+    noteForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        let isValid = true;
+        if (messageInput.value.trim() === '') {
+            messageInput.classList.add('is-invalid');
+            messageInput.focus();
+            isValid = false;
+        } else {
+            messageInput.classList.remove('is-invalid');
+        }
+        if (!termsCheckbox.checked) {
+            termsCheckbox.classList.add('is-invalid');
+            termsCheckbox.focus();
+            isValid = false;
+        } else {
+            termsCheckbox.classList.remove('is-invalid');
+        }
+
+        if (isValid) {
+            noteContainer.innerHTML = `<p class="card-text">${messageInput.value}</p>`;
+            messageInput.value = '';
+        }
+    });
 }
