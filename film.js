@@ -104,3 +104,19 @@ const filmy = [
 		premiera: '2022-12-24',
 	},
 ]
+const detailContainer = document.getElementById('detail-filmu');
+const nazevFilmu = decodeURIComponent(window.location.hash.substring(1));
+
+const filmData = filmy.find(film => film.nazev === nazevFilmu);
+
+if (filmData) {
+    detailContainer.innerHTML = `
+        <h2>${filmData.nazev}</h2>
+        <img src="${filmData.plakat.url}" alt="${filmData.nazev}" width="${filmData.plakat.sirka}" height="${filmData.plakat.vyska}" />
+        <p><strong>Ochutnávka:</strong> ${filmData.ochutnavka}</p>
+        <p><strong>Popis:</strong> ${filmData.popis}</p>
+        <p><strong>Premiera:</strong> ${filmData.premiera}</p>
+    `;
+} else {
+    detailContainer.innerHTML = `<p>Film nebyl nalezen. Zkontrolujte adresu URL.</p>`;
+}
