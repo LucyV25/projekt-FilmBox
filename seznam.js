@@ -115,6 +115,18 @@ const filmy = [
         popis: "Skupina zlodějů proniká do lidských snů, aby získala tajné informace.",
         premiera: "2010-07-16",
     },
+	{
+        id: "titanic",
+        nazev: "Titanic",
+        plakat: {
+            url: "https://image.pmgstatic.com/cache/resized/w420/files/images/film/posters/167/088/167088422_13ff33.jpg",
+            sirka: 420,
+            vyska: 592,
+        },
+        ochutnavka: "Romantický film o osudové lásce na palubě Titanicu.",
+        popis: "Příběh o lásce mezi Jackem a Rose na palubě slavného Titanicu.",
+        premiera: "1997-12-19",
+    },
 ]
 const seznamFilmuElement = document.querySelector('#seznam-filmu');
 

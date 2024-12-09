@@ -112,8 +112,20 @@ const filmy = [
 			vyska: 592,
         },
         ochutnavka: "Sci-fi thriller o snech a realitě.",
-        popis: "Skupina zlodějů proniká do lidských snů, aby získala tajné informace.",
+        popis: "Dom Cobb (Leonardo DiCaprio) je velmi zkušený zloděj a jeho největší mistrovství je v krádeži nejcennějších tajemství. Ovšem není to jen tak obyčejný zloděj. Dom krade myšlenky z lidského podvědomí v době, kdy lidská mysl je nejzranitelnější – když člověk spí. Cobbova nevšední dovednost z něj dělá nejen velmi vyhledávaného experta, ale také ohroženého uprchlíka. Musel obětovat vše, co kdy miloval. Nyní se mu však nabízí šance na vykoupení. Může získat zpět svůj život. Tato poslední zakázka je nejen velmi riskantní, ale zdá se, že i nemožná. Tentokrát nemá za úkol myšlenku ukrást, ale naopak ji zasadit do něčí mysli. Pokud uspěje, bude to dokonalý zločin.",
         premiera: "2010-07-16",
+    },
+	{
+        id: "titanic",
+        nazev: "Titanic",
+        plakat: {
+            url: "https://image.pmgstatic.com/cache/resized/w420/files/images/film/posters/167/088/167088422_13ff33.jpg",
+            sirka: 420,
+            vyska: 592,
+        },
+        ochutnavka: "Romantický film o osudové lásce na palubě Titanicu.",
+        popis: "V dubnu 1912 vyrazila luxusní zaoceánská loď Titanic z Anglie na svou první, a bohužel i poslední plavbu. Své pasažéry ale do cíle cesty nikdy nedovezla – narazila na ledovec a klesla pod hladinu. Tím začalo drama největší námořní katastrofy v dějinách lidstva. V ledových vodách Atlantiku skončilo mnoho životů a osudů. Mezi nimi byla i jedna láska, která vlastně ani pořádně nezačala. Americký velkofilm v režii Jamese Camerona, oceněný jedenácti Oscary®, katapultoval mezi nejzářivější hvězdy Hollywoodu oba představitele hlavních rolí Kate Winslete a Leonarda DiCapria.",
+        premiera: "1997-12-19",
     },
 ]
 function daysSincePremiere(premieraDate) {
