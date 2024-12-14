@@ -132,7 +132,7 @@ function daysSincePremiere(premieraDate) {
     const premiere = new Date(premieraDate);
     const today = new Date();
     const differenceInTime = today - premiere;
-    const differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24)); // Převod na dny
+    const differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
     return differenceInDays;
 }
 
@@ -150,6 +150,13 @@ if (filmData) {
         <p><strong>Popis:</strong> ${filmData.popis}</p>
         <p><strong>Premiéra:</strong> ${filmData.premiera}</p>
 		<p><strong>Počet dní od premiéry:</strong> ${daysSince} dní</p>
+		<div class="stars" id="stars">
+								<button class="far fa-star button-star" data-mdb-toggle="tooltip" title="Nic moc"></button>
+								<button class="far fa-star button-star" data-mdb-toggle="tooltip" title="Ucházející"></button>
+								<button class="far fa-star button-star" data-mdb-toggle="tooltip" title="Dobrý"></button>
+								<button class="far fa-star button-star" data-mdb-toggle="tooltip" title="Skvělý"></button>
+								<button class="far fa-star button-star" data-mdb-toggle="tooltip" title="Úžasný"></button>
+		</div>
         <div id="note-form-container">
             <form id="note-form">
                 <div class="form-group">
@@ -198,3 +205,40 @@ if (noteForm) {
         }
     });
 }
+function highlightStars(rating) {
+  const stars = document.querySelectorAll('.fa-star');
+  stars.forEach((star, index) => {
+    if (index < rating) {
+      star.classList.add('fas');
+      star.classList.remove('far');
+    } else {
+      star.classList.add('far');
+      star.classList.remove('fas');
+    }
+  });
+}
+
+const stars = document.querySelectorAll('.button-star');
+
+stars.forEach((star, index) => {
+    star.addEventListener('mouseenter', () => {
+        for (let i = 0; i <= index; i++) {
+            stars[i].classList.add('fas');
+        }
+    });
+
+    star.addEventListener('mouseleave', () => {
+        for (let i = 0; i < stars.length; i++) {
+            stars[i].classList.remove('fas');
+        }
+    });
+
+    star.addEventListener('click', () => {
+        for (let i = 0; i <= index; i++) {
+            stars[i].classList.add('fas');
+        }
+        for (let i = index + 1; i < stars.length; i++) {
+            stars[i].classList.remove('fas');
+        }
+    });
+});
