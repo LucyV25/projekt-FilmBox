@@ -123,25 +123,12 @@ video[controls] + .player-controls {
     display: block;
     font-size: 0.875em;
 }
-#rating-container {
-    display: flex;
-    gap: 10px;
+.fa-star {
+    font-size: 30px;
+    color: #ccc;
     cursor: pointer;
 }
-
-.button-star {
-    font-size: 2rem;
-    color: #ccc;
-}
-
-.button-star.fas {
-    color: gold;
-}
-.far {
-    color: gray;
-}
-
 .fas {
-    color: gold;
+    color: #FFD700;
 }
 
